@@ -13,7 +13,7 @@ const server = "http://127.0.0.1:8000/api/";
 
 export class LaravelProvider {
 
-  constructor(public http: HttpClient,public HttpHeader:HttpHeaders) {
+  constructor(public http: HttpClient) {
     console.log('Hello LaravelProvider Provider');
   }
 
@@ -64,6 +64,13 @@ export class LaravelProvider {
     config.append('Authorization', 'Bearer ' + this.jwt);
     return this.http.delete(server + url+'/'+id, { headers: config });
   }
-  
+
+  // registeration of users
+
+  addNewUser(url,payload){
+    let config = new HttpHeaders();
+    config.append('Accept', 'application/json');
+    return this.http.post(server + url, payload, { headers: config });
+  }
     
 }
