@@ -72,5 +72,11 @@ export class LaravelProvider {
     config.append('Accept', 'application/json');
     return this.http.post(server + url, payload, { headers: config });
   }
+
+  authenticate(payload){
+    let config = new HttpHeaders();
+    config.append('Accept', 'application/json');
+    return this.http.post('http://127.0.0.1:8000/oauth/token',payload,{headers:config});
+  }
     
 }
