@@ -61,7 +61,9 @@ export class SignInPage {
   checkAccessLevel(data){
     this.http.store('access_level',data).subscribe((response)=>{
       let access_level = response['user']['access_level'];
-      console.log(access_level);
+      localStorage.setItem('user_id',response['user']['id']);
+      localStorage.setItem('user_name', response['user']['name']);
+
       switch (access_level) {
         //User is a doctor
         case 1:
@@ -72,7 +74,7 @@ export class SignInPage {
         // user is a pharmacist
         case 2:
           this.toastr.messenger('Welcome to your pharmacy');
-          this.navCtrl.setRoot("PharmacyTabsPage");
+          this.navCtrl.setRoot("PharmacyDashboardPage");
 
           break;
         // user is a patient

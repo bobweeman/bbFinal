@@ -1,0 +1,36 @@
+<!--
+  Generated template for the AddDrugsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>addDrugs</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <ion-item-sliding *ngFor="let drug of drugs">
+      <ion-item>
+        <ion-avatar item-start>
+          <img src="assets/imgs/backend.png">
+        </ion-avatar>
+        <h2>{{drug.name}}</h2>
+        <p>{{drug.category.name}}</p>
+      </ion-item>
+      <ion-item-options side="left">
+        <button ion-button color="primary" (click)="subscribe()">
+          <ion-icon name="text"></ion-icon>
+          Subscribe
+        </button>
+      </ion-item-options>
+      
+    </ion-item-sliding>
+  </ion-list>
+
+</ion-content>
