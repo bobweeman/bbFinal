@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { AlertProvider } from '../../providers/alert/alert';
+import { LaravelProvider } from '../../providers/laravel/laravel';
 
 /**
  * Generated class for the DrugsPage page.
@@ -15,11 +17,28 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class DrugsPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private toastr: AlertProvider, private http: LaravelProvider,public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DrugsPage');
+    this.getAllDrugs();
+  }
+  drugs: any[] = [];
+
+
+
+  addDrug(){
+    this.navCtrl.push("AddDrugPage");
+  }
+
+  getAllDrugs() {
+    this.http.index('drugs').subscribe((response) => {
+      this.drugs = response['drugs'];
+      console.log(this.drugs);
+    }, error => {
+      this.toastr.messenger('Could not load drugs');
+    });
   }
 
 }

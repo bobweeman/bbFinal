@@ -1,0 +1,32 @@
+<!--
+  Generated template for the AddCategoryPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>addCategory</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+<ion-grid>
+  <ion-row>
+    <ion-col>
+
+      <form [formGroup]="categoryForm">
+        <ion-item>
+          <ion-label floating>Name</ion-label>
+          <ion-input type="text" formControlName="name"></ion-input>
+        </ion-item>
+        <button ion-button round (click)="addCategory()">Save</button>
+      </form>
+    </ion-col>
+  </ion-row>
+
+</ion-grid>
+</ion-content>

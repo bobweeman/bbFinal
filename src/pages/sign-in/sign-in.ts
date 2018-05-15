@@ -38,7 +38,7 @@ export class SignInPage {
     password:'',
     grant_type:'password',
     client_id:'2',
-    client_secret:'elvN3vcD9ymU83jigVSdCoGv9vjwaLcSUJ4YziIW',
+    client_secret:'DhSce4e1eoCy2thS3tcKPw53oyV4XcuLqXsSE4Pv',
     scope:'*'
   }
 

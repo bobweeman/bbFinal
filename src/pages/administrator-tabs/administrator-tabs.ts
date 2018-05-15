@@ -17,7 +17,6 @@ export class AdministratorTabsPage {
 
   drugsRoot = 'DrugsPage'
   categoriesRoot = 'CategoriesPage'
-  compositionRoot = 'CompositionPage'
 
 
   constructor(public navCtrl: NavController) {}
