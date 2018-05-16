@@ -82,4 +82,12 @@
     <plugin name="cordova-plugin-ionic-webview" spec="1.1.19" />
     <plugin name="cordova-plugin-ionic-keyboard" spec="2.0.5" />
     <engine name="android" spec="~6.2.3" />
+    <plugin name="cordova-plugin-camera" spec="^2.4.1" />
+    <plugin name="cordova-plugin-geolocation" spec="^2.4.3">
+        <variable name="GEOLOCATION_USAGE_DESCRIPTION" value="To locate pharmacies" />
+    </plugin>
+    <plugin name="cordova-plugin-googlemaps" spec="^2.3.1">
+        <variable name="API_KEY_FOR_ANDROID" value="AIzaSyCvlfDU0BK9pyYrm8xOOv6HhOdImcHtxHw" />
+        <variable name="API_KEY_FOR_IOS" value="AIzaSyCvlfDU0BK9pyYrm8xOOv6HhOdImcHtxHw" />
+    </plugin>
 </widget>

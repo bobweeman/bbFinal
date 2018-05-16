@@ -7,7 +7,8 @@ import { Injectable } from '@angular/core';
   See https://angular.io/guide/dependency-injection for more info on providers
   and Angular DI.
 */
-const server = "http://127.0.0.1:8000/api/";
+// const server = "http://127.0.0.1:8000/api/";
+const server = "http://80.240.19.121/api/";
 
 @Injectable()
 
@@ -76,7 +77,10 @@ export class LaravelProvider {
   authenticate(payload){
     let config = new HttpHeaders();
     config.append('Accept', 'application/json');
-    return this.http.post('http://127.0.0.1:8000/oauth/token',payload,{headers:config});
+    // return this.http.post('http://127.0.0.1:8000/oauth/token',payload,{headers:config});
+    return this.http.post('http://80.240.19.121/oauth/token', payload, { headers: config });
+
+    
   }
     
 }

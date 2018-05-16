@@ -38,7 +38,7 @@ export class SignInPage {
     password:'',
     grant_type:'password',
     client_id:'2',
-    client_secret:'DhSce4e1eoCy2thS3tcKPw53oyV4XcuLqXsSE4Pv',
+    client_secret:'XXfmR25Aqjf9WOr8kRb2BM9511hUmyWQ7QMCMYxq',
     scope:'*'
   }
 
@@ -55,6 +55,7 @@ export class SignInPage {
         this.checkAccessLevel(this.loginData);
       },error=>{
         this.toastr.messenger('Login Failed!');
+        console.log(error);
       });    
   }
 

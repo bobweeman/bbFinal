@@ -15,7 +15,15 @@
 
 <ion-content padding>
 <ion-grid>
-  <ion-row>
+  <ion-row *ngIf="!next" >
+    <div class="home-theatre">
+        <img src="{{pharmData.logo}}" alt="" class="logo-img animated bounce">
+          <button ion-button icon-only class="btn-left" >
+            <ion-icon name="trash"></ion-icon>
+          </button>
+    </div>
+  </ion-row>
+  <ion-row *ngIf="!next" >
     <ion-col>
 
       <form [formGroup]="shopForm">
@@ -25,9 +33,16 @@
         </ion-item>
         <button ion-button round (click)="presentActionSheet()">Choose logo</button>
        
-        <button ion-button round (click)="createShop()">Create</button>
+        <button ion-button round (click)="continue()">Next</button>
       </form>
     </ion-col>
+  </ion-row>
+  <ion-row *ngIf="next" >
+    <div id="jack">
+
+    </div>
+            <button ion-button round (click)="savePharmacy()">Next</button>
+
   </ion-row>
  </ion-grid>
 </ion-content>
