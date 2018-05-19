@@ -1,14 +1,8 @@
 import { AlertProvider } from './../../providers/alert/alert';
 import { LaravelProvider } from './../../providers/laravel/laravel';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ItemSliding } from 'ionic-angular';
 
-/**
- * Generated class for the CategoriesPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -16,8 +10,13 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'categories.html',
 })
 export class CategoriesPage {
+  slidingItem='null';
 
-  constructor(private toastr:AlertProvider, private http:LaravelProvider, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private toastr:AlertProvider, 
+    private http:LaravelProvider, 
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+  ) {
   }
 
   ionViewDidLoad() {
@@ -41,8 +40,17 @@ export class CategoriesPage {
       this.toastr.messenger('Could not load categories');
     });
   }
+  // doRefresh(refresher) {
+  //   console.log('Begin async operation', refresher);
 
-  
+  //   setTimeout(() => {
+  //     console.log('Async operation has ended');
+  //     refresher.complete();
+  //   }, 2000);
+  // }
 
- 
-}
+  // delete(slidingItem:ItemSliding){
+  //     slidingItem.close();
+  //   }
+  }
+

@@ -1,18 +1,64 @@
-<!--
-  Generated template for the TutorialsPage page.
 
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<ion-header>
-
-  <ion-navbar>
-    <ion-title>tutorials</ion-title>
-  </ion-navbar>
-
-</ion-header>
-
-
-<ion-content padding>
-
+<ion-content>
+  <ion-slides pager (ionSlideDidChange)="slideChanged()" (ionSlideDrag)="slideMoved()">
+      <ion-slide>
+          <div class="diag" style="background-color:darkgreen no-repeat">
+            <img src="assets/imgs/generate.png" class="slide-image"/>
+          </div>
+          
+          <div [@bounce]='state'>
+            <h2>Generate QR code.</h2>
+            <p>Doctor-patient confidentiality is our priority</p>
+          </div>
+        </ion-slide>
+        <ion-slide>
+            <div class="diag" style="background-color:darkgreen no-repeat">
+              <img src="assets/imgs/online-store.png" class="slide-image"/>
+            </div>
+            
+            <div [@bounce]='state'>
+              <h2>Create your shop</h2>
+              <p>Create your pharmacy on the platform</p>
+            </div>
+          </ion-slide>
+      <ion-slide>
+          <div class="diag" style="background-color:darkgreen no-repeat">
+            <img src="assets/imgs/qr-code.png" class="slide-image"/>
+          </div>
+          
+          <div [@bounce]='state'>
+            <h2>Scan Prescription</h2>
+            <p>You can scan your prescription with our intuitive interface.</p>
+          </div>
+        </ion-slide>
+    <ion-slide>
+      <div class="diag" style="background-color:darkgreen no-repeat">
+        <img src="assets/imgs/search.png" class="slide-image"/>
+      </div>
+      
+      <div [@bounce]='state'>
+        <h2>Search for drugs</h2>
+        <p>You can search search for drugs of your choice</p>
+      </div>
+    </ion-slide>
+    <ion-slide>
+      <div class="diag" style="background-color:darkgreen no-repeat">
+        <img src="assets/imgs/shopping-cart.png"  class="slide-image"/>
+      </div>
+      <div [@bounce]='state'>
+        <h2>Purchase drugs</h2>
+        <p>Make your order and it will be delivered to your door step.</p>
+      </div>
+    </ion-slide>
+    <ion-slide>
+      <div class="diag" style="background-color:darkgreen no-repeat">
+        <img src="assets/imgs/cash.png"  class="slide-image"/>
+      </div>
+      <div [@bounce]='state'>
+        <h2>Pay on delivery</h2>
+        <p>Make payment once your order has been delivered to you.</p>
+      </div>
+    </ion-slide>
+  </ion-slides>
+  <button (click)="skip()" id="skip">{{ skipMsg }}</button>
 </ion-content>

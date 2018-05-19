@@ -27,7 +27,12 @@ import {
 })
 export class NewPharmacyPage {
 
-  constructor(private geolocation: Geolocation,private toastr:AlertProvider, private camera:Camera, public actionSheetCtrl: ActionSheetController,public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private geolocation: Geolocation,
+    private toastr:AlertProvider, 
+    private camera:Camera, 
+    public actionSheetCtrl: ActionSheetController,
+    public navCtrl: NavController, 
+    public navParams: NavParams) {
   }
   map: GoogleMap;
   next:boolean=false;
@@ -48,7 +53,8 @@ export class NewPharmacyPage {
     name:'',
     logo:''
   }
-
+  
+//Location of the pharmacy
   userPosition={
     longitude:0,
     latitude:0

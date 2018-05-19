@@ -1,9 +1,4 @@
-<!--
-  Generated template for the SignInPage page.
 
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar>
@@ -14,9 +9,10 @@
 
 
 <ion-content padding>
+  <div class="signin-area">
 <ion-grid>
   <ion-row>
-    <ion-col >
+    <ion-col width-100>
       
     <form [formGroup]="loginForm">
       <ion-item>
@@ -27,14 +23,19 @@
         <ion-label floating>Password</ion-label>
         <ion-input type="password" formControlName="password"></ion-input>
       </ion-item>
-       <button ion-button round (click)="signIn()">Login</button>
+      <button ion-button rounded icon-right color="primary" block (click)="signIn()">
+         Login <ion-icon name="arrow-dropright"></ion-icon>
+      </button>
+
+      <button ion-button color="energy" (click)="admin()">Admin</button>
+      <button ion-button color="energy" (click)="pharmacy()">Pharmacy</button>
     </form>
     </ion-col>
   </ion-row>
-  <ion-row>
-    <ion-col>
-      <button ion-button round (click)="signUp()">Sign Up</button>
-    </ion-col>
-  </ion-row>
+
+  <ion-row class="signup animated pulse infinite">
+      <button ion-button color="energy" (click)="signUp()">Sign Up</button>
+ </ion-row>
 </ion-grid>
+</div>
 </ion-content>

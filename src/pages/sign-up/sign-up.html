@@ -1,9 +1,4 @@
-<!--
-  Generated template for the SignUpPage page.
 
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar>
@@ -21,10 +16,12 @@
         <ion-item>
           <ion-label floating >Name</ion-label>
           <ion-input type="text" formControlName="name" ></ion-input>
+          <p class="invalid">Please enter a valid name</p>
         </ion-item>
         <ion-item>
           <ion-label floating>Email</ion-label>
           <ion-input type="text" formControlName="email"></ion-input>
+          <p class="invalid">Please enter a valid email</p>
         </ion-item>
         <ion-item>
           <ion-label>User Type</ion-label>
@@ -37,12 +34,19 @@
         <ion-item>
           <ion-label floating>Password</ion-label>
           <ion-input type="password" formControlName="password"></ion-input>
+          <p class="invalid">Please enter a valid password</p>
         </ion-item>
         <ion-item>
           <ion-label floating>Confirm Password</ion-label>
           <ion-input type="password"></ion-input>
+          <p class="invalid">Please enter a valid password</p>
         </ion-item>
-        <button ion-button round (click)="register()" >Register</button>
+
+        <ion-item *ngIf="confirmKeys">
+            <p class="invalid">Passwords must be the same!</p>
+        </ion-item>
+
+        <button ion-button icon-left full (click)="register()" ><ion-icon name="ios-book"></ion-icon>Register</button>
         </form>
       </ion-col>
     </ion-row>

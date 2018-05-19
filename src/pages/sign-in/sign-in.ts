@@ -99,4 +99,12 @@ export class SignInPage {
     });
   }
 
+  admin(){
+    this.navCtrl.push("AdministratorTabsPage");
+  }
+
+  pharmacy(){
+    this.navCtrl.push("PharmacyDashboardPage");
+  }
+
 }
