@@ -113,6 +113,7 @@ export class NewPharmacyPage {
       alert(this.userPosition.longitude);
     }).catch((error) => {
       this.toastr.messenger('Error getting location');
+      alert(JSON.stringify(error));
     });
   }
 
@@ -122,8 +123,8 @@ export class NewPharmacyPage {
     let mapOptions: GoogleMapOptions = {
       camera: {
         target: {
-          lat: this.userPosition.latitude,
-          lng: this.userPosition.longitude
+          lat: 5.6037,
+          lng: 0.1870
         },
         zoom: 18,
         tilt: 30
@@ -135,7 +136,7 @@ export class NewPharmacyPage {
     // Wait the MAP_READY before using any methods.
     this.map.one(GoogleMapsEvent.MAP_READY)
       .then(() => {
-        console.log('Map is ready!');
+        alert('Map is ready!');
 
         // Now you can use all methods safely.
         this.map.addMarker({
@@ -143,8 +144,8 @@ export class NewPharmacyPage {
           icon: 'blue',
           animation: 'DROP',
           position: {
-            lat: this.userPosition.latitude,
-            lng: this.userPosition.latitude,
+            lat: 5.6037,
+            lng: 0.1870
           }
         })
           .then(marker => {
