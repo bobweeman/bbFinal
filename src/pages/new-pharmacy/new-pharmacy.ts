@@ -107,13 +107,13 @@ export class NewPharmacyPage {
 
   // get coordinates
   getPostition(){
+    
     this.geolocation.getCurrentPosition({ enableHighAccuracy: true }).then((resp) => {
       this.userPosition.latitude= resp.coords.latitude;
       this.userPosition.longitude= resp.coords.longitude;
       alert(this.userPosition.longitude);
     }).catch((error) => {
       this.toastr.messenger('Error getting location');
-      alert(JSON.stringify(error));
     });
   }
 
@@ -123,8 +123,8 @@ export class NewPharmacyPage {
     let mapOptions: GoogleMapOptions = {
       camera: {
         target: {
-          lat: 5.6037,
-          lng: 0.1870
+          lat: this.userPosition.latitude,
+          lng: this.userPosition.longitude
         },
         zoom: 18,
         tilt: 30
@@ -136,7 +136,7 @@ export class NewPharmacyPage {
     // Wait the MAP_READY before using any methods.
     this.map.one(GoogleMapsEvent.MAP_READY)
       .then(() => {
-        alert('Map is ready!');
+        this.toastr.messenger('Map is ready');
 
         // Now you can use all methods safely.
         this.map.addMarker({
@@ -144,8 +144,8 @@ export class NewPharmacyPage {
           icon: 'blue',
           animation: 'DROP',
           position: {
-            lat: 5.6037,
-            lng: 0.1870
+            lat: this.userPosition.latitude,
+            lng: this.userPosition.longitude
           }
         })
           .then(marker => {
