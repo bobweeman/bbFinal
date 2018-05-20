@@ -2,9 +2,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { HttpClientModule } from '@angular/common/http';
-import { GoogleMaps } from '@ionic-native/google-maps';
+import { GoogleMaps, Geocoder } from '@ionic-native/google-maps';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { IonicStorageModule } from '@ionic/storage';
 
+import { HttpModule } from '@angular/http';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -17,6 +19,9 @@ import { Geolocation } from '@ionic-native/geolocation';
 
 import { LaravelProvider } from '../providers/laravel/laravel';
 import { AlertProvider } from '../providers/alert/alert';
+import { SpinnerProvider } from '../providers/spinner/spinner';
+import { MapProvider } from '../providers/map/map';
+
 
 @NgModule({
   declarations: [
@@ -26,9 +31,11 @@ import { AlertProvider } from '../providers/alert/alert';
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     IonicModule.forRoot(MyApp),
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -45,7 +52,10 @@ import { AlertProvider } from '../providers/alert/alert';
     AlertProvider,
     Camera,
     Geolocation,
-    GoogleMaps
+    GoogleMaps,
+    Geocoder,
+    SpinnerProvider,
+    MapProvider
   ]
 })
 export class AppModule {}

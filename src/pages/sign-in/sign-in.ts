@@ -55,7 +55,7 @@ export class SignInPage {
         this.checkAccessLevel(this.loginData);
       },error=>{
         this.toastr.messenger('Login Failed!');
-        console.log(error);
+        console.log(JSON.stringify(error));
       });    
   }
 

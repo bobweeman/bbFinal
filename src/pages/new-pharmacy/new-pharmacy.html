@@ -1,6 +1,11 @@
 <ion-header>
-    <ion-navbar color="primary"></ion-navbar>
 
+  <ion-navbar *ngIf="!next" >
+    <ion-title>Create your Shop</ion-title>
+  </ion-navbar>
+<ion-toolbar *ngIf="next"  color="primary">
+  <ion-searchbar [(ngModel)]="search_map" (ionInput)="searchPlaces()" placeholder="Search for a place"></ion-searchbar>
+</ion-toolbar>
 </ion-header>
 
 
