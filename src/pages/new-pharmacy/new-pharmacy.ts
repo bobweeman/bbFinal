@@ -4,15 +4,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ActionSheetController } from 'ionic-angular';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Camera,CameraOptions } from '@ionic-native/camera';
-import {
-  GoogleMaps,
-  GoogleMap,
-  GoogleMapsEvent,
-  GoogleMapOptions,
-  CameraPosition,
-  MarkerOptions,
-  Marker
-} from '@ionic-native/google-maps';
+
 /**
  * Generated class for the NewPharmacyPage page.
  *
@@ -32,10 +24,12 @@ export class NewPharmacyPage {
     private camera:Camera, 
     public actionSheetCtrl: ActionSheetController,
     public navCtrl: NavController, 
-    public navParams: NavParams) {
+    public navParams: NavParams,
+  ) {
   }
-  map: GoogleMap;
   next:boolean=false;
+  // map search
+  search_place:any='';
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad NewPharmacyPage');
@@ -123,51 +117,14 @@ export class NewPharmacyPage {
     });
   }
 
-  // load google maps
-  loadMap() {
-
-    let mapOptions: GoogleMapOptions = {
-      camera: {
-        target: {
-          lat: this.userPosition.latitude,
-          lng: this.userPosition.longitude
-        },
-        zoom: 18,
-        tilt: 30
-      }
-    };
-
-    this.map = GoogleMaps.create('jack', mapOptions);
-
-    // Wait the MAP_READY before using any methods.
-    this.map.one(GoogleMapsEvent.MAP_READY)
-      .then(() => {
-        this.toastr.messenger('Map is ready');
-
-        // Now you can use all methods safely.
-        this.map.addMarker({
-          title: 'You',
-          icon: 'blue',
-          animation: 'DROP',
-          position: {
-            lat: this.userPosition.latitude,
-            lng: this.userPosition.longitude
-          }
-        })
-          .then(marker => {
-            marker.on(GoogleMapsEvent.MARKER_CLICK)
-              .subscribe(() => {
-                alert('clicked');
-              });
-          });
-
-      });
-
-  }
+ 
   continue() {
-    this.next=true;
-    this.loadMap();
+    // this.next=true;
+    // this.loadMap();
+    this.navCtrl.push("MapPage");
   }  
+
+  
 
   savePharmacy(){
 
