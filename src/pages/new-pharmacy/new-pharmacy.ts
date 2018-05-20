@@ -113,6 +113,7 @@ export class NewPharmacyPage {
 
   // get coordinates
   getPostition(){
+    
     this.geolocation.getCurrentPosition({ enableHighAccuracy: true }).then((resp) => {
       this.userPosition.latitude= resp.coords.latitude;
       this.userPosition.longitude= resp.coords.longitude;
@@ -141,7 +142,7 @@ export class NewPharmacyPage {
     // Wait the MAP_READY before using any methods.
     this.map.one(GoogleMapsEvent.MAP_READY)
       .then(() => {
-        console.log('Map is ready!');
+        this.toastr.messenger('Map is ready');
 
         // Now you can use all methods safely.
         this.map.addMarker({
@@ -150,7 +151,7 @@ export class NewPharmacyPage {
           animation: 'DROP',
           position: {
             lat: this.userPosition.latitude,
-            lng: this.userPosition.latitude,
+            lng: this.userPosition.longitude
           }
         })
           .then(marker => {
