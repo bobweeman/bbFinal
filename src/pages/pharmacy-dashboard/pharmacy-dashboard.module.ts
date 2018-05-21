@@ -8,6 +8,6 @@ import { PharmacyDashboardPage } from './pharmacy-dashboard';
   ],
   imports: [
     IonicPageModule.forChild(PharmacyDashboardPage),
-  ]
+  ],
 })
 export class PharmacyDashboardPageModule {}

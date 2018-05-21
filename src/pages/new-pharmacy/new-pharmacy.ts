@@ -1,3 +1,4 @@
+import { LaravelProvider } from './../../providers/laravel/laravel';
 import { Geolocation } from '@ionic-native/geolocation';
 import { AlertProvider } from './../../providers/alert/alert';
 import { Component } from '@angular/core';
@@ -25,6 +26,7 @@ export class NewPharmacyPage {
     public actionSheetCtrl: ActionSheetController,
     public navCtrl: NavController, 
     public navParams: NavParams,
+    private http:LaravelProvider
   ) {
   }
   next:boolean=false;
@@ -45,7 +47,10 @@ export class NewPharmacyPage {
   // data object to persist at backend
   pharmData={
     name:'',
-    logo:''
+    logo:'general.png',
+    longitude:0,
+    latitude:0,
+    owner_id:''
   }
   
 //Location of the pharmacy
@@ -87,7 +92,7 @@ export class NewPharmacyPage {
   //take Photo
   takePhoto(sourceType: number) {
     const options: CameraOptions = {
-      quality: 50,
+      quality: 75,
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
@@ -111,7 +116,6 @@ export class NewPharmacyPage {
     this.geolocation.getCurrentPosition({ enableHighAccuracy: true }).then((resp) => {
       this.userPosition.latitude= resp.coords.latitude;
       this.userPosition.longitude= resp.coords.longitude;
-      alert(this.userPosition.longitude);
     }).catch((error) => {
       this.toastr.messenger('Error getting location');
     });
@@ -119,14 +123,23 @@ export class NewPharmacyPage {
 
  
   continue() {
-    // this.next=true;
-    // this.loadMap();
+    this.savePharmacy();
+    
     this.navCtrl.push("MapPage");
   }  
 
-  
+  buildData(){
+    this.pharmData.name = this.shopForm.controls['name'].value;
+    this.pharmData.owner_id = localStorage.getItem('user_id');
+  }
 
   savePharmacy(){
-
+    this.buildData();
+    this.http.store('pharmacies',this.pharmData).subscribe((response)=>{
+      console.log(JSON.stringify(response));
+    },error=>{
+      this.toastr.messenger("Failed to save pharmacy");
+      console.log(JSON.stringify(error));
+    });
   }
 }
