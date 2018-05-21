@@ -1,3 +1,4 @@
+import { AlertProvider } from './../../providers/alert/alert';
 import { LaravelProvider } from './../../providers/laravel/laravel';
 import { Component } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
@@ -19,9 +20,10 @@ export class PharmacyDashboardPage {
   addDrugsRoot = 'AddDrugsPage'
   stockDrugsRoot = 'StockDrugsPage'
   ordersRoot = 'OrdersPage'
+  pharmDashRoot = 'PharmacyStatisticsPage'
 
 
-  constructor(private http:LaravelProvider, public navCtrl: NavController) {
+  constructor(private toastr:AlertProvider, private http:LaravelProvider, public navCtrl: NavController) {
   }
 
   ionViewDidLoad() {
@@ -34,29 +36,26 @@ export class PharmacyDashboardPage {
     id:''
   }
 
+  shopDetails:any[]=[];
+
   // check if user has setup shop
   checkShop(){
       this.user.id=localStorage.getItem('user_id');
       this.http.store('check_shop',this.user).subscribe((response)=>{
         let count =response['count'];
-        if(count >=1){
-          this.setShopDetails();
-        }else if(count <1){
+        if(count ==1){
+          // this.toastr.messenger("Welcome to your shop");
+        }else if(count ==0){
+          this.toastr.messenger("Please create a pharmacy");
           this.navCtrl.setRoot("NewPharmacyPage")
         }
       },error=>{
-
+        this.toastr.messenger("Could not load pharmacy");
       })
   }
 
 
-  setShopDetails(){
-    this.http.store('my_pharmacy',this.user).subscribe((response=>{
-        console.log(response);
-    }),error=>{
-
-    })
-  }
+ 
  
  
 }

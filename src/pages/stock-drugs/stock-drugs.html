@@ -13,6 +13,35 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding *ngIf="!stocking" >
+  <ion-list>
+    <ion-item-sliding *ngFor="let drug of subscribedDrugs">
+      <ion-item>
+        <ion-avatar item-start>
+          <img src="assets/imgs/backend.png">
+        </ion-avatar>
+        <h2>{{drug.drugs.name}}</h2>
+        <p>{{drug.drugs.category.name}}</p>
+      </ion-item>
+      <ion-item-options side="left">
+        <button ion-button color="primary" (click)="begin(drug.id)">
+          <ion-icon name="text"></ion-icon>
+          Stock
+        </button>
+      </ion-item-options>
+
+    </ion-item-sliding>
+  </ion-list>
+
+</ion-content>
+<ion-content padding *ngIf="stocking" class="clear-fix">
+  <form [formGroup]="stockForm">
+    <ion-item>
+      <ion-label floating>Number</ion-label>
+      <ion-input type="number" formControlName="number"></ion-input>
+    </ion-item>
+   
+    <button ion-button color="energy" (click)="stock()">Add</button>
+  </form>
 
 </ion-content>

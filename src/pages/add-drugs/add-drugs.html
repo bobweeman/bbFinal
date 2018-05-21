@@ -13,7 +13,7 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding *ngIf="!subscribing" >
   <ion-list>
     <ion-item-sliding *ngFor="let drug of drugs">
       <ion-item>
@@ -24,7 +24,7 @@
         <p>{{drug.category.name}}</p>
       </ion-item>
       <ion-item-options side="left">
-        <button ion-button color="primary" (click)="subscribe()">
+        <button ion-button color="primary" (click)="begin(drug.id)">
           <ion-icon name="text"></ion-icon>
           Subscribe
         </button>
@@ -32,5 +32,20 @@
       
     </ion-item-sliding>
   </ion-list>
+
+</ion-content>
+<ion-content padding *ngIf="subscribing" class="clear-fix" >
+  <form [formGroup]="subscribtionForm">
+    <ion-item>
+      <ion-label floating>Number</ion-label>
+      <ion-input type="number" formControlName="number"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Expiry</ion-label>
+      <ion-input type="date" formControlName="expiry"></ion-input>
+    </ion-item>
+   
+    <button ion-button color="energy" (click)="subscribe()">Add</button>
+  </form>
 
 </ion-content>
