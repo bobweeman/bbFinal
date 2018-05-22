@@ -1,7 +1,7 @@
 import { AlertProvider } from './../../providers/alert/alert';
 import { LaravelProvider } from './../../providers/laravel/laravel';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ItemSliding } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ItemSliding, App } from 'ionic-angular';
 
 
 @IonicPage()
@@ -16,6 +16,7 @@ export class CategoriesPage {
     private http:LaravelProvider, 
     public navCtrl: NavController, 
     public navParams: NavParams,
+    public app: App,
   ) {
 
   }
@@ -63,5 +64,18 @@ export class CategoriesPage {
     }
   }
   }
+
+    
+//  sign out from application
+signOut() {
+  this.toastr.messenger('You have been logged out');
+  // remove token
+  localStorage.removeItem('jwt');
+  
+  // remove user access level
+  localStorage.removeItem('logUserAccessLevel');
+  // getout to login page
+  this.app.getRootNav().setRoot("SignInPage");
+}
 
 }

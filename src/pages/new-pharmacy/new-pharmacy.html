@@ -2,6 +2,11 @@
 
   <ion-navbar *ngIf="!next" >
     <ion-title>Create your Shop</ion-title>
+    <ion-buttons right (click)='signOut()'>
+      <button color="warning" ion-button icon-only>
+        <ion-icon name="power"></ion-icon>
+      </button>
+  </ion-buttons>
   </ion-navbar>
 <ion-toolbar *ngIf="next"  color="primary">
   <ion-searchbar [(ngModel)]="search_map" (ionInput)="searchPlaces()" placeholder="Search for a place"></ion-searchbar>
@@ -17,9 +22,9 @@
   <ion-row *ngIf="!next" >
     <div class="home-theatre">
         <img src="{{pharmData.logo}}" alt="" class="logo-img animated bounce">
-          <button ion-button icon-only class="btn-left" >
+          <!-- <button ion-button icon-only class="btn-left" >
             <ion-icon name="trash"></ion-icon>
-          </button>
+          </button> -->
     </div>
   </ion-row>
   <ion-row *ngIf="!next" >
