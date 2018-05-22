@@ -30,14 +30,15 @@ export class DoctorDashboardPage {
   }
 
   getPatients(event){
-    console.log(event.target.value);
     this.query.name =event.target.value;
     this.http.store('patients',this.query).subscribe((response)=>{
       this.patients=response['patients'];
-      console.log(this.patients);
     },error=>{
       this.toastr.messenger('Cannot load patients');
     });
+  }
 
+  diagnose(patient){
+      this.navCtrl.push("DiagnosePage",patient);
   }
 }
