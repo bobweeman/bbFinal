@@ -6,6 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import { Storage } from '@ionic/storage';
 import { SpinnerProvider } from '../../providers/spinner/spinner'
 import { MapProvider } from '../../providers/map/map';
+import { google } from "google-maps";
 
 /**
  * Generated class for the MapPage page.
@@ -20,6 +21,7 @@ import { MapProvider } from '../../providers/map/map';
   templateUrl: 'map.html',
 })
 export class MapPage {
+   google : google;
 
   @ViewChild('map') mapElement: ElementRef;
   @ViewChild('searchbar', { read: ElementRef }) searchbar: ElementRef;

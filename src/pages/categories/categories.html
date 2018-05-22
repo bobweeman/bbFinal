@@ -1,7 +1,12 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>categories</ion-title>
+    <ion-title>Categories</ion-title>
+    <ion-buttons right (click)='signOut()'>
+      <button color="warning" ion-button icon-only>
+        <ion-icon name="power"></ion-icon>
+      </button>
+  </ion-buttons>
   </ion-navbar>
 
 </ion-header>
@@ -18,7 +23,7 @@
   <ion-item-sliding *ngFor="let category of categories" >
     <ion-item>
       <ion-avatar item-start>
-        <img src="assets/imgs/backend.png">
+        <img src="assets/imgs/paracetamol.jpg">
       </ion-avatar>
       <h2>{{category.name}}</h2>
     </ion-item>
@@ -29,8 +34,8 @@
       </button>
     </ion-item-options>
     <ion-item-options side="right">
-      <button ion-button color="danger" (click)="delete()">
-        <ion-icon name="mail"></ion-icon>
+      <button ion-button color="danger" (click)="delete(category)">
+        <ion-icon name="trash"></ion-icon>
         Delete
       </button>
     </ion-item-options>

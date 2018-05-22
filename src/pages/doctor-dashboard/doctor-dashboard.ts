@@ -1,7 +1,8 @@
 import { AlertProvider } from './../../providers/alert/alert';
 import { LaravelProvider } from './../../providers/laravel/laravel';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, App } from 'ionic-angular';
+import { AlertProvider } from '../../providers/alert/alert';
 
 /**
  * Generated class for the DoctorDashboardPage page.
@@ -17,7 +18,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class DoctorDashboardPage {
 
-  constructor(private toastr:AlertProvider, private http:LaravelProvider, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public app: App,private toastr:AlertProvider, private http:LaravelProvider, public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
@@ -38,7 +39,24 @@ export class DoctorDashboardPage {
     });
   }
 
+
   diagnose(patient){
       this.navCtrl.push("DiagnosePage",patient);
   }
+
+  
+//  sign out from application
+signOut() {
+  this.toastr.messenger('You have been logged out');
+  // remove token
+  localStorage.removeItem('jwt');
+  
+  // remove user access level
+  localStorage.removeItem('logUserAccessLevel');
+  // getout to login page
+  this.app.getRootNav().setRoot("SignInPage");
+}
+
+
+
 }

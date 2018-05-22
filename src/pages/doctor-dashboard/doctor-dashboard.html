@@ -7,7 +7,12 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>doctorDashboard</ion-title>
+    <ion-title>Dashboard</ion-title>
+    <ion-buttons right (click)='signOut()'>
+      <button color="warning" ion-button icon-only>
+        <ion-icon name="power"></ion-icon>
+      </button>
+  </ion-buttons>
   </ion-navbar>
 <ion-searchbar primary [(ngModel)]="searchQuery" (keyup)="getPatients($event)" show-cancel="true" placeholder="Search">
 </ion-searchbar>

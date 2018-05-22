@@ -1,7 +1,7 @@
 import { AlertProvider } from './../../providers/alert/alert';
 import { LaravelProvider } from './../../providers/laravel/laravel';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, App } from 'ionic-angular';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 /**
@@ -18,7 +18,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class AddCategoryPage {
 
-  constructor(private toastr:AlertProvider, public navCtrl: NavController, public navParams: NavParams,private http:LaravelProvider) {
+  constructor(private toastr:AlertProvider, public navCtrl: NavController, public app: App,public navParams: NavParams,private http:LaravelProvider) {
   }
 
   categoryForm = new FormGroup({
@@ -49,4 +49,15 @@ export class AddCategoryPage {
     });
   }
 
+//  sign out from application
+signOut() {
+  this.toastr.messenger('You have been logged out');
+  // remove token
+  localStorage.removeItem('jwt');
+  
+  // remove user access level
+  localStorage.removeItem('logUserAccessLevel');
+  // getout to login page
+  this.app.getRootNav().setRoot("SignInPage");
+}
 }
