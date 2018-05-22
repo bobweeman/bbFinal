@@ -2,7 +2,6 @@ import { AlertProvider } from './../../providers/alert/alert';
 import { LaravelProvider } from './../../providers/laravel/laravel';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, App } from 'ionic-angular';
-import { AlertProvider } from '../../providers/alert/alert';
 
 /**
  * Generated class for the DoctorDashboardPage page.
@@ -34,6 +33,7 @@ export class DoctorDashboardPage {
     this.query.name =event.target.value;
     this.http.store('patients',this.query).subscribe((response)=>{
       this.patients=response['patients'];
+      console.log(this.patients)
     },error=>{
       this.toastr.messenger('Cannot load patients');
     });

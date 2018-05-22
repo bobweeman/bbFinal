@@ -7,18 +7,40 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Diagnose {{patient.name}}</ion-title>
+    <ion-title>Diagnose {{patient?.name}}</ion-title>
   </ion-navbar>
-
+<ion-searchbar *ngIf="drugging"  primary [(ngModel)]="searchQuery" (keyup)="getDrugs($event)" show-cancel="true" placeholder="Search">
+</ion-searchbar>
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding *ngIf="!drugging">
   <form [formGroup]="diagnosisForm">
    
     <ion-label floating>Diagnosis</ion-label>
       <ion-input type="text" formControlName="diagnosis"></ion-input>
-    </ion-item>
+   
   <button ion-button color="energy" (click)="prescribtions()">Prescribe Drugs</button>
   </form>
 </ion-content>
+
+<ion-content padding *ngIf="drugging" >
+  <ion-list>
+    <ion-item-sliding *ngFor="let drug of medicines">
+      <ion-item>
+        <ion-avatar item-start>
+          <img src="assets/imgs/backend.png">
+        </ion-avatar>
+        <h2>{{drug.name}}</h2>
+        <p>Added {{drug.created_at}}</p>
+      </ion-item>
+      <ion-item-options side="left">
+        <button ion-button color="primary" (click)="diagnose(drug.id)">
+          <ion-icon name="text"></ion-icon>
+          Diagnose
+        </button>
+      </ion-item-options>
+
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>  

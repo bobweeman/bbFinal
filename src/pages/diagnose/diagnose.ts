@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AlertProvider } from '../../providers/alert/alert';
+import { LaravelProvider } from '../../providers/laravel/laravel';
 
 /**
  * Generated class for the DiagnosePage page.
@@ -16,7 +18,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class DiagnosePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private toastr:AlertProvider, private http:LaravelProvider, public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
@@ -24,16 +26,33 @@ export class DiagnosePage {
     this.setPatient();
   }
 
-  diagnoseForm = new FormGroup({
+  diagnosisForm = new FormGroup({
     diagnosis: new FormControl(null, ([Validators.required, Validators.minLength(5)])),
   })
-
-  patient={
-
+  query = {
+    name: ''
   }
+
+  drugging:boolean=false;
+
+  patient={}
+  medicines:any[]=[];
   
+  getDrugs(event) {
+    this.query.name = event.target.value;
+    this.http.store('search_drugs', this.query).subscribe((response) => {
+      this.medicines = response['drugs'];
+      console.log(this.medicines);
+    }, error => {
+      this.toastr.messenger('Cannot load drugs');
+    });
+  }
   setPatient(){
     this.patient =this.navParams.data;
+  }
+
+  prescribtions(){
+    this.drugging=true;
   }
 
   
