@@ -41,7 +41,7 @@ export class LaravelProvider {
     let config = new HttpHeaders();
     config.append('Accept', 'application/json');
     config.append('Authorization', 'Bearer ' + this.jwt);
-    return this.http.get(server + url + '/' + id), { headers: config };
+    return this.http.get(server + url + '/' + id, { headers: config });
   }
 
   // show edit details for  a single resource

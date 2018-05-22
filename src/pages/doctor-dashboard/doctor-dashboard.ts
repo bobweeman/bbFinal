@@ -1,3 +1,5 @@
+import { AlertProvider } from './../../providers/alert/alert';
+import { LaravelProvider } from './../../providers/laravel/laravel';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
@@ -15,11 +17,27 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class DoctorDashboardPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private toastr:AlertProvider, private http:LaravelProvider, public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DoctorDashboardPage');
   }
+  patients:any[]=[];
+  
+  query={
+    name:''
+  }
 
+  getPatients(event){
+    console.log(event.target.value);
+    this.query.name =event.target.value;
+    this.http.store('patients',this.query).subscribe((response)=>{
+      this.patients=response['patients'];
+      console.log(this.patients);
+    },error=>{
+      this.toastr.messenger('Cannot load patients');
+    });
+
+  }
 }
