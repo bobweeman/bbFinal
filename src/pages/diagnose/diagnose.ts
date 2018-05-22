@@ -55,6 +55,27 @@ export class DiagnosePage {
     this.drugging=true;
   }
 
+  diagnosis={
+    doctor_id:'',
+    patient_id:'',
+    diagnosis:'',
+    dosage:'',
+    quantity:0,
+    drug_id:0
+  }
+
+  buildDiagnosis(data){
+    this.diagnosis.doctor_id=localStorage.getItem('user_id');
+    this.diagnosis.patient_id=this.navParams.data.id;
+    this.diagnosis.diagnosis=this.diagnosisForm.controls['diagnosis'].value;
+    this.diagnosis.drug_id=data;
+  }
+
+  diagnose(drug_id){
+    this.buildDiagnosis(drug_id);
+    this.navCtrl.push('DrugFrequencyPage',this.diagnosis);
+  }
+
   
   
 
