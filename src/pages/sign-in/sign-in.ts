@@ -38,7 +38,7 @@ export class SignInPage {
     password:'',
     grant_type:'password',
     client_id:'2',
-    client_secret:'FdCo4JXBS8UDm30B3jYvRpueEtol7cW581CHL742',
+    client_secret:'aCFa8txiZrj1jSBHxDFvLRH7uOugAGmrw1tacUoc',
     scope:'*'
   }
 
@@ -81,7 +81,7 @@ export class SignInPage {
         // user is a patient
         case 3:
           this.toastr.messenger('Welcome');
-          this.navCtrl.setRoot("PatientTabsPage");
+          this.navCtrl.setRoot("PatientPage");
           break;
         // user is administrator
         case 4:

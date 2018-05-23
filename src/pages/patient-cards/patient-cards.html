@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Pharmcode</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-list>
+    <ion-item-sliding *ngFor="let diagnose of diagnosis">
+      <ion-item>
+        <ion-thumbnail item-start>
+          <img src="assets/imgs/medicine.png">
+        </ion-thumbnail>
+        <h2>{{diagnose?.diagnosis}}</h2>
+        <p>Dr. {{diagnose?.doctor?.name}}</p>
+        <p>{{diagnose?.created_at}}</p>
+      </ion-item>
+      <ion-item-options side="right">
+        <button ion-button color="secondary" (click)="viewQr(diagnose.qr_code_url)">
+          <ion-icon name="chatbubbles"></ion-icon>
+          Qr-Code
+        </button>
+        <button ion-button color="primary" (click)="viewPlayers(item)">
+          <ion-icon name="contacts"></ion-icon>
+          View
+        </button>
+        <button ion-button color="danger" (click)="delete(item)">
+          <ion-icon name="trash"></ion-icon>
+          Delete
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>

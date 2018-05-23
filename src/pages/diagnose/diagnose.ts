@@ -42,7 +42,6 @@ export class DiagnosePage {
     this.query.name = event.target.value;
     this.http.store('search_drugs', this.query).subscribe((response) => {
       this.medicines = response['drugs'];
-      console.log(this.medicines);
     }, error => {
       this.toastr.messenger('Cannot load drugs');
     });
@@ -53,27 +52,38 @@ export class DiagnosePage {
 
   prescribtions(){
     this.drugging=true;
+    this.diagnose();
   }
 
   diagnosis={
-    doctor_id:'',
-    patient_id:'',
-    diagnosis:'',
-    dosage:'',
-    quantity:0,
-    drug_id:0
-  }
+       diagnosis:'',
+    }
 
-  buildDiagnosis(data){
-    this.diagnosis.doctor_id=localStorage.getItem('user_id');
-    this.diagnosis.patient_id=this.navParams.data.id;
+  buildDiagnosis(){
     this.diagnosis.diagnosis=this.diagnosisForm.controls['diagnosis'].value;
-    this.diagnosis.drug_id=data;
   }
 
-  diagnose(drug_id){
-    this.buildDiagnosis(drug_id);
-    this.navCtrl.push('DrugFrequencyPage',this.diagnosis);
+  diagnose(){
+    this.buildDiagnosis();
+    let id= localStorage.getItem('diagnosis_slip');
+    this.http.update('prescriptions',id,this.diagnosis).subscribe((response=>{
+      this.toastr.messenger('Diagnosis created');
+    }),error=>{
+      this.toastr.messenger("Could not add diagnosis");  
+    });
+  }
+
+  assignDrugData={
+    doctor_id:'',
+    prescribtion_id:'',
+    drug_id:'',
+    dosage:'',
+    quantity:''
+
+  }
+
+  assignDrug(drug_id){
+    this.navCtrl.push('DrugFrequencyPage', drug_id);
   }
 
   

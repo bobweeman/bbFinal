@@ -29,19 +29,36 @@ export class DoctorDashboardPage {
     name:''
   }
 
+  diagnosis={
+    doctor_id:'',
+    patient_id:'',
+    diagnosis:'N/A'
+  }
+
   getPatients(event){
     this.query.name =event.target.value;
     this.http.store('patients',this.query).subscribe((response)=>{
       this.patients=response['patients'];
-      console.log(this.patients)
     },error=>{
       this.toastr.messenger('Cannot load patients');
     });
   }
 
+  buildDiagnosis(id){
+    this.diagnosis.doctor_id=localStorage.getItem('user_id');
+    this.diagnosis.patient_id=id;
+  }
+
 
   diagnose(patient){
-      this.navCtrl.push("DiagnosePage",patient);
+    this.buildDiagnosis(patient.id);
+    this.http.store('prescriptions',this.diagnosis).subscribe((response)=>{
+      localStorage.setItem('diagnosis_slip',response['slip']);
+      this.navCtrl.push("DiagnosePage", patient);
+    },error=>{
+      this.toastr.messenger('Could not set prescription');
+      console.log(JSON.stringify(error));
+    });
   }
 
   

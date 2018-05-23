@@ -18,13 +18,18 @@
 
   <ion-label floating>Prescribtion</ion-label>
   <ion-item>
-    <ion-label floating>Number</ion-label>
-    <ion-input type="text" formControlName="number"></ion-input>
+    <ion-label floating>Number (Pills/Spoons)</ion-label>
+    <ion-input type="number" formControlName="number"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-label floating>Frequency</ion-label>
-    <ion-input type="text" formControlName="times"></ion-input>
+    <ion-label floating>Frequency (Daily)</ion-label>
+    <ion-input type="number" formControlName="times"></ion-input>
   </ion-item>
+  <ion-item>
+    <ion-label floating>Duration (Days)</ion-label>
+    <ion-input type="number" formControlName="times"></ion-input>
+  </ion-item>
+
   <button ion-button color="energy" (click)="prescribtions()">Prescribe Drugs</button>
 </form>
 </ion-content>
