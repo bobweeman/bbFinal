@@ -19,7 +19,7 @@ export class PharmacyDashboardPage {
 
   addDrugsRoot = 'AddDrugsPage'
   stockDrugsRoot = 'StockDrugsPage'
-  ordersRoot = 'OrdersPage'
+  ordersRoot = 'ScanQrCodePage'
   pharmDashRoot = 'PharmacyStatisticsPage'
 
 

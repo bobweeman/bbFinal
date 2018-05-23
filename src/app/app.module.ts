@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { GoogleMaps, Geocoder } from '@ionic-native/google-maps';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { IonicStorageModule } from '@ionic/storage';
+import { QRScanner } from '@ionic-native/qr-scanner';
 
 import { HttpModule } from '@angular/http';
 
@@ -55,7 +56,9 @@ import { MapProvider } from '../providers/map/map';
     GoogleMaps,
     Geocoder,
     SpinnerProvider,
-    MapProvider
+    MapProvider,
+    QRScanner
+  
   ]
 })
 export class AppModule {}
