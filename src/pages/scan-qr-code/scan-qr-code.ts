@@ -77,7 +77,7 @@ export class ScanQrCodePage {
     this.http.store('patient_drugs',this.diagDrugs).subscribe((response)=>{
         this.deDrugs=response['drugs'];
         this.showDrugs=true;
-        console.log(this.deDrugs);
+        alert(JSON.stringify(this.deDrugs));
     },error=>{
       this.toastr.messenger('Could not get related drugs');
       this.showDrugs=false;
