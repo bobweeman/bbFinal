@@ -14,5 +14,23 @@
 
 
 <ion-content padding>
+  <div *ngIf="!showDrugs" >
   <button ion-button block (click)='beginScan()'>Scan Code</button>
+
+  </div>
+
+  <ion-content padding *ngIf="showDrugs" class="clear-fix-2">
+    <ion-list>
+      <ion-item-sliding *ngFor="let drug of deDrugs">
+        <ion-item>
+          <ion-avatar item-start>
+            <img src="assets/imgs/backend.png">
+          </ion-avatar>
+          <h2>{{drug.name}}</h2>
+          <p>{{drug.created_at}}</p>
+        </ion-item>
+       
+      </ion-item-sliding>
+    </ion-list>
+  </ion-content>
 </ion-content>

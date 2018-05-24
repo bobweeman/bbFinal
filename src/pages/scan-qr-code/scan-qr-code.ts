@@ -1,3 +1,5 @@
+import { AlertProvider } from './../../providers/alert/alert';
+import { LaravelProvider } from './../../providers/laravel/laravel';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner';
@@ -16,13 +18,18 @@ import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner';
 })
 export class ScanQrCodePage {
 
-  constructor(private qrScanner: QRScanner,public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private toastr:AlertProvider, private http:LaravelProvider, private qrScanner: QRScanner,public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ScanQrCodePage');
   }
-
+  
+  diagDrugs={
+    qr_code_url:''
+  };
+  showDrugs:boolean=false;
+  deDrugs:any[]=[];
 
   beginScan(){
 
@@ -37,8 +44,8 @@ export class ScanQrCodePage {
             var ionApp = <HTMLElement>document.getElementsByTagName("ion-app")[0];
             // start scanning
             let scanSub = this.qrScanner.scan().subscribe((drug: string) => {
-              alert('Scanned drugs... '+ drug);
-            
+              // alert('Scanned drugs... '+ drug);
+              this.diagDrugs.qr_code_url=drug;
               this.qrScanner.hide(); // hide camera preview
               scanSub.unsubscribe(); // stop scanning
               ionApp.style.display = "block";
@@ -62,6 +69,16 @@ export class ScanQrCodePage {
         })
         .catch((e: any) => console.log('Error is', e));
     
+  }
+
+  getPatientDrugs(){
+    this.http.store('patient_drugs',this.diagDrugs).subscribe((response)=>{
+        this.deDrugs=response['drugs'];
+        this.showDrugs=true;
+        console.log(this.deDrugs);
+    },error=>{
+      this.toastr.messenger('Could not get related drugs');
+    });
   }
 
 }
