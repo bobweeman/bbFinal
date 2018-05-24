@@ -44,7 +44,7 @@ export class ScanQrCodePage {
             var ionApp = <HTMLElement>document.getElementsByTagName("ion-app")[0];
             // start scanning
             let scanSub = this.qrScanner.scan().subscribe((drug: string) => {
-              // alert('Scanned drugs... '+ drug);
+              alert('Scanned drugs... '+ drug);
               this.diagDrugs.qr_code_url=drug;
               this.getPatientDrugs();
               this.qrScanner.hide(); // hide camera preview
@@ -80,6 +80,9 @@ export class ScanQrCodePage {
         console.log(this.deDrugs);
     },error=>{
       this.toastr.messenger('Could not get related drugs');
+      this.showDrugs=false;
+      alert(JSON.stringify(error));
+
     });
   }
 
