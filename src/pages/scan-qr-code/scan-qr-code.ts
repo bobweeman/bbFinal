@@ -46,8 +46,10 @@ export class ScanQrCodePage {
             let scanSub = this.qrScanner.scan().subscribe((drug: string) => {
               // alert('Scanned drugs... '+ drug);
               this.diagDrugs.qr_code_url=drug;
+              this.getPatientDrugs();
               this.qrScanner.hide(); // hide camera preview
               scanSub.unsubscribe(); // stop scanning
+              
               ionApp.style.display = "block";
             });
 
